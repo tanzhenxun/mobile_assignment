@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/title_nav"
+        android:title="Title"
+        android:icon="@drawable/title_icon"/>
+    <item
+        android:id="@+id/proposal_nav"
+        android:title="Proposal"
+        android:icon="@drawable/proposal_report_icon"/>
+    <item
+        android:id="@+id/home_nav"
+        android:title="Home"
+        android:icon="@drawable/home_icon"/>
+    <item
+        android:id="@+id/thesis_nav"
+        android:title="Thesis"
+        android:icon="@drawable/thesis_report_icon"/>
+    <item
+        android:id="@+id/poster_nav"
+        android:title="Poster"
+        android:icon="@drawable/poster_icon"/>
+</menu>
