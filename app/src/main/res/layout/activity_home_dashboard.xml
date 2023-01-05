@@ -79,100 +79,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textbox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"
-        android:width="4dip"
-        app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="20dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/grey"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latest_update_word">
+        app:layout_constraintTop_toBottomOf="@id/latest_update_word">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/notice_msg1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:width="4dip"
-            android:padding="10dp">
+            android:text="Tan Zhen Xun has been Submitted"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/notice_msg2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="55dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/red"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/title_icon"
-                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+        <TextView
+            android:id="@+id/notice_msg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tan Zhen Xun has been Submitted"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/notice_msg3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notice_msg1" />
 
-            <TextView
-                android:id="@+id/icon_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:text="Title"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/icon"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/notice_msg3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tan Zhen Xun has been Submitted"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/notice_msg4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notice_msg2" />
 
-            <TextView
-                android:id="@+id/project_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="4dp"
-                android:maxLines="2"
-                android:text="Arduino Smart Temperature"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/icon"
-                app:layout_constraintTop_toBottomOf="@+id/icon_title"
-                tools:ignore="MissingConstraints" />
-
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:width="200dip"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Submission Date 2022/12/14 12:23AM"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/icon"
-                app:layout_constraintTop_toBottomOf="@+id/project_title"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/round_deep_red_overdue_reject"
-                android:paddingHorizontal="15dp"
-                android:paddingVertical="2dp"
-                android:text="Reject"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.985"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/notice_msg4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tan Zhen Xun has been Submitted"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notice_msg3" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -182,7 +149,7 @@
         android:layout_marginVertical="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/textbox">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/work_result"

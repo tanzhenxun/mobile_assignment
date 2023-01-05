@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1057397363681",
+    "project_id": "mad-fyp-project",
+    "storage_bucket": "mad-fyp-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057397363681:android:4af777fd626c242228f8a0",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057397363681-hso5hf4glv95v8s6ico3j92se3aahti0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZJEtefClb5H6S7HKw1ZsK3gPeCufP7qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057397363681-hso5hf4glv95v8s6ico3j92se3aahti0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

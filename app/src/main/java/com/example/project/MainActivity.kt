@@ -19,20 +19,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //replaceFragment(StdDashboardFragment()) // Whenever open this page will show HomeFragment
-        val testing = ItemObject("Testing1","Testing2","Testing3","Tesing4")
+        val testing = ItemObject("proposal","proposal","pending",null)
         var mBundle = Bundle()
         mBundle.putParcelable("mText",testing)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-
-
-
-               //R.id.home_nav -> replaceFragment(StdDashboardFragment())
+                R.id.home_nav -> replaceFragment(StdDashboardFragment(), mBundle)
                 R.id.title_nav -> replaceFragment(TitleFragment(), mBundle)
-                //R.id.thesis_nav -> replaceFragment(ThesisFragment())
-                //R.id.poster_nav-> replaceFragment(PosterFragment())
-                //R.id.proposal_nav-> replaceFragment(ProposalFragment())
+                R.id.thesis_nav -> replaceFragment(ThesisFragment() , mBundle)
+                R.id.poster_nav-> replaceFragment(PosterFragment() , mBundle)
+                R.id.proposal_nav-> replaceFragment(ProposalFragment() , mBundle)
 
                 else -> {}
             }

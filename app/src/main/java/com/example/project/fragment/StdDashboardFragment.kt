@@ -2,11 +2,13 @@ package com.example.project.fragment
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.example.project.ItemObject
 import com.example.project.R
 import com.example.project.tab.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -17,11 +19,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 class StdDashboardFragment : Fragment() {
     private lateinit var work_result: TabLayout
     private lateinit var actionlist: ViewPager2
+    private var dataitem: ItemObject? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            dataitem = it.getParcelable("mText")
         }
     }
     override fun onCreateView(
@@ -36,8 +39,8 @@ class StdDashboardFragment : Fragment() {
         TabLayoutMediator(work_result, actionlist){ tab,index ->  // pass 2 argument and get 2 argument
             tab.text = when(index){
                 //Prefer using if for binary conditions. Prefer using when if there are three or more options.
-                0 -> {"Pending"} // Display tab title
-                1 -> {"Completed"}
+                0 -> {"Ongoing Work"} // Display tab title
+                1 -> {"Result"}
                 else -> {throw Resources.NotFoundException("Position Not Found")}
             }
         }.attach()
