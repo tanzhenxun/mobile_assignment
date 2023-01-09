@@ -20,8 +20,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class TitleAdapter(private val submissionList: ArrayList<Submission>) :
-    RecyclerView.Adapter<TitleAdapter.MyViewHolder>() {
+class ThesisAdapter(private val submissionList: ArrayList<Submission>) :
+    RecyclerView.Adapter<ThesisAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val label: TextView = itemView.findViewById(R.id.icon_title)
@@ -96,7 +96,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
 
             // If Pending, Rejected or Approve, then show detail.
             fun checkDetail(){
-                val intent1 = Intent(view.context, TitleSubmissionDetailActivity::class.java)
+                val intent1 = Intent(view.context, ThesisSubmissionDetailActivity::class.java)
                 intent1.putExtra("submissionId", submissionId)
                 view.context.startActivity(intent1)
             }
@@ -104,7 +104,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
             // Overdue, Pending, Rejected, Approve / Graded
             when (holder.Status.text) {
                 "" -> {
-                    val intent1 = Intent(view.context, TitleSubmissionActivity::class.java)
+                    val intent1 = Intent(view.context, ThesisSubmissionActivity::class.java)
                     intent1.putExtra("submissionId", submissionId)
                     intent1.putExtra("label", holder.label.text)
                     intent1.putExtra("deadline", holder.due_date.text)
@@ -113,7 +113,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
                     view.context.startActivity(intent1)
                 }
                 "Overdue" -> {
-                    val intent1 = Intent(view.context, TitleSubmissionActivity::class.java)
+                    val intent1 = Intent(view.context, ThesisSubmissionActivity::class.java)
                     intent1.putExtra("submissionId", submissionId)
                     intent1.putExtra("label", holder.label.text)
                     intent1.putExtra("deadline", holder.due_date.text)
@@ -156,7 +156,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
         }
 
         // If project_title is blank then Textview will gone
-        if(holder.Title.text == "" ){
+        if(holder.Title.text == "" ) {
             holder.Title.visibility = View.GONE
         }
 

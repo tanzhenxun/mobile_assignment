@@ -20,7 +20,21 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ThesisSubmissionDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".TitleSubmissionActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ThesisSubmissionActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

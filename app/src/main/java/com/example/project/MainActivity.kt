@@ -57,8 +57,8 @@ class MainActivity : AppCompatActivity() {
 
                 val studentName = findViewById<TextView>(R.id.user_name)
                 val studentId = findViewById<TextView>(R.id.user_id)
-                studentName.setText(first_name + " " + last_name)
-                studentId.setText(student_id)
+                studentName.text = first_name + " " + last_name
+                studentId.text = student_id
 
 //                 Log.d(TAG, "${userSnapshot.id} => ${userSnapshot.data}")
 //                Toast.makeText(this, last_name + first_name + "\n" + student_id,
