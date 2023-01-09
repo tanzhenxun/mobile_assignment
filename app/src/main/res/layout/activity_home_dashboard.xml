@@ -8,76 +8,19 @@
     android:padding="16dp"
     tools:context=".fragment.StdDashboardFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Tab Zhen Xun"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/user_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center"
-                android:text="2220441-BSE"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/user_name" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
-
     <TextView
         android:id="@+id/latest_update_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Latest Update"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintBottom_toTopOf="@+id/textbox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textbox"
@@ -164,13 +107,12 @@
             android:id="@+id/actionlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/work_result"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/work_result" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <!--    <androidx.cardview.widget.CardView-->
