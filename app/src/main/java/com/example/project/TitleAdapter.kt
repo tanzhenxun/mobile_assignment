@@ -50,6 +50,7 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
         // Replacing the submission_status
 
         val submissionId = submissionList[position].submission_id
+        val submissionStatus = submissionList[position].submission_status
 
         // Deadline Date
         val dlDate = SimpleDateFormat("dd-MM-yyyy HH:mm").parse(holder.due_date.text as String)
@@ -122,7 +123,14 @@ class TitleAdapter(private val submissionList: ArrayList<Submission>) :
                     view.context.startActivity(intent1)
                 }
                 "Pending" -> {
-                    checkDetail()
+                    val intent1 = Intent(view.context, TitleSubmissionActivity::class.java)
+                    intent1.putExtra("submissionId", submissionId)
+                    intent1.putExtra("submissionStatus", submissionStatus)
+                    intent1.putExtra("label", holder.label.text)
+                    intent1.putExtra("deadline", holder.due_date.text)
+                    intent1.putExtra("overdue", overdue)
+                    view.context.startActivity(intent1)
+
                 }
                 "Rejected" -> {
                     checkDetail()

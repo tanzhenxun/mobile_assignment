@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -20,15 +21,34 @@ class TitleSubmissionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_title_submission)
         val submissionId = intent.getStringExtra("submissionId")
+        val submissionStatus = intent.getStringExtra("submissionStatus")
         val Label = intent.getStringExtra("label")
         val Deadline = intent.getStringExtra("deadline")
         val Overdue = intent.getBooleanExtra("overdue", false)
 
         Toast.makeText(this, submissionId, Toast.LENGTH_LONG).show()
 
-        val title = findViewById<EditText>(R.id.input_title)
-        val comment = findViewById<EditText>(R.id.input_comment)
+        var title = findViewById<TextView>(R.id.input_title)
+        var comment = findViewById<TextView>(R.id.input_comment)
         val btn_submit = findViewById<Button>(R.id.submit_button)
+
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+        db.collection("submission").document(submissionId.toString()).get()
+            .addOnSuccessListener { submissionSnapshot ->
+            if(submissionSnapshot.exists()){
+                Toast.makeText(this, "Second Success", Toast.LENGTH_LONG).show()
+                submissionSnapshot.reference.collection("users").document(userId).get()
+                    .addOnSuccessListener { userSnapshot ->
+                        if(userSnapshot.exists()){
+                            val projectTitle = userSnapshot.getString("title")
+                            val projectAbstract = userSnapshot.getString("abstract")
+                            Toast.makeText(this, "Last Success", Toast.LENGTH_LONG).show()
+                            title.text = projectTitle
+                            comment.text = projectAbstract
+                        }
+                    }
+            }
 
         btn_submit.setOnClickListener {
             val Title = title.text.toString().trim()
@@ -42,8 +62,6 @@ class TitleSubmissionActivity : AppCompatActivity() {
 
             // Convert current date time from (Date to String)
             val dateSubmit = dateFormat.format(currentDateTime)
-
-            val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
             // Get to same submitted submission id of "submission" collection
             val newDocument = db.collection("submission").document(submissionId.toString())
@@ -86,14 +104,19 @@ class TitleSubmissionActivity : AppCompatActivity() {
                         }
                 }
 
-            val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
-            intent.putExtra("submissionId", newDocument.id)
-            // Remove current activity history to prevent navigate back
-            //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
+            if(submissionStatus == "Pending"){
+                finish()
+            } else{
+                val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
+                intent.putExtra("submissionId", newDocument.id)
+                // Remove current activity history to prevent navigate back
+                //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                startActivity(intent)
 
-            // Back to the previous Activity.
-            finish()
+                // Back to the previous Activity.
+                finish()
+            }
         }
+            }
     }
 }

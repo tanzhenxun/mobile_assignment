@@ -58,8 +58,6 @@ class TitleFragment : Fragment() {
                 val submissionReference = submissionReference2.whereEqualTo("label", "Title")
                     .whereEqualTo("batch", studentBatch)
 
-
-
                 submissionReference.get().addOnSuccessListener { submissionSnapshot ->
 
                     // create a list to store the data of the subcollection

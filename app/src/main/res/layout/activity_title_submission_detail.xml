@@ -156,11 +156,11 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <Button
-            android:id="@+id/btn_undo"
+            android:id="@+id/btn_redo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/grey"
-            android:text="Undo"
+            android:text="Redo"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"

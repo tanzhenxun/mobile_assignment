@@ -28,7 +28,7 @@ class TitleSubmissionDetailActivity : AppCompatActivity() {
         val Status = findViewById<TextView>(R.id.status)
         val Submissiondate = findViewById<TextView>(R.id.submission_date)
         val Feedback = findViewById<TextView>(R.id.input_feedback)
-        val btnUndo = findViewById<Button>(R.id.btn_undo)
+        val btnRedo = findViewById<Button>(R.id.btn_redo)
 
         val submissionReference = db.collection("submission")
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
@@ -50,22 +50,23 @@ class TitleSubmissionDetailActivity : AppCompatActivity() {
                                 Feedback.text = feedback
 
                                 if (submissionStatus != null) {
-                                    checkStatus(submissionStatus, Status, btnUndo)
+                                    checkStatus(submissionStatus, Status, btnRedo)
                                 }
                             }
                         }
                 }
             }
     }
+
     // Pending, Pending(TextView)
-    fun checkStatus(status: String, Status: TextView, btnUndo: Button){
+    fun checkStatus(status: String, Status: TextView, button: Button){
         when(status){
             "Pending" -> {
                 val colorStateList = ContextCompat.getColorStateList(this, R.color.deep_yellow)
                 Status.setBackgroundTintList(colorStateList)
 
                 // Will hide the button, but it will still take up space in the layout
-                btnUndo.visibility = View.INVISIBLE
+                button.visibility = View.INVISIBLE
 
                 // Will hide the button and it will not take up any space in the layout
                 // button.visibility = View.GONE
@@ -77,7 +78,7 @@ class TitleSubmissionDetailActivity : AppCompatActivity() {
                 val colorStateList = ContextCompat.getColorStateList(this, R.color.deep_green)
                 Status.setBackgroundTintList(colorStateList)
                 // Will hide the button, but it will still take up space in the layout
-                btnUndo.visibility = View.INVISIBLE
+                button.visibility = View.INVISIBLE
             }
             else -> {}
         }
