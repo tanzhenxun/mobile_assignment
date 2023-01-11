@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -27,18 +28,24 @@ import java.util.*
 
 class ThesisSubmissionActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
-    private var mDB: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var storageReference = FirebaseStorage.getInstance()
     private var fileUrl : Uri? = null
+
+    // Variable for data from previous activity
     private var Deadline : String? = null
     private var Label : String? = null
     private var submissionId : String? = null
-
     private var Overdue : Boolean? = null
 
-    private var fileName : TextView? = null
-    private var comment : TextView? = null
+    // Variable for view or button
+    private var tvLabel : TextView? = null
+    private var tvComment : EditText? = null
+    private var tvFileName : TextView? = null
+    private var btnUpload : Button? = null
+    private var btnSubmit : Button? = null
 
+    // Declare variable for the document id of "submission" collection
+    private var newDocument: DocumentReference? = null
 
     private var MY_CODE_REQUEST: Int = 100;
 
@@ -51,44 +58,47 @@ class ThesisSubmissionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_thesis_submission)
 
+        // Declare variable for data from previous activity
         submissionId = intent.getStringExtra("submissionId")
         Label = intent.getStringExtra("label")
         Deadline = intent.getStringExtra("deadline")
         Overdue = intent.getBooleanExtra("overdue", false)
 
-        Toast.makeText(this, submissionId, Toast.LENGTH_LONG).show()
+        // Declare variable for view or button
+        tvLabel = findViewById(R.id.upload_thesis)
+        tvComment = findViewById(R.id.input_comment)
+        tvFileName = findViewById(R.id.fileName)
+        btnUpload = findViewById(R.id.upload_button)
+        btnSubmit = findViewById(R.id.submit_button)
 
-        val upload = findViewById<TextView>(R.id.upload_thesis)
-        comment = findViewById<EditText>(R.id.input_comment)
-        val btn_upload = findViewById<Button>(R.id.upload_button)
-        val btn_submit = findViewById<Button>(R.id.submit_button)
-        fileName = findViewById(R.id.fileName)
+        // Show label
+        tvLabel!!.text = Label
 
-
-        upload.text = Label
-
-        btn_upload.setOnClickListener {
+        // When upload
+        btnUpload!!.setOnClickListener {
             selectImage();
         }
 
-        btn_submit.setOnClickListener {
-            Log.d("Image Name", fileUrl.toString())
+        // When submit
+        btnSubmit!!.setOnClickListener {
             uploadImage();
         }
     }
+
     @SuppressLint("SimpleDateFormat")
     private fun uploadImage(){
-        var fileRef : StorageReference? = storageReference.reference
+        val fileRef : StorageReference = storageReference.reference
 
         // it will get the file name only, if got fileUrl.lastPathSegment
-        var documentRef = fileRef!!.child("uploadedFile/${fileName!!.text}")
+        // var documentRef = fileRef!!.child("uploadedFile/${fileUrl!!.lastPathSegment}")
+        val documentRef = fileRef.child("uploadedFile/${tvFileName!!.text}")
 
         // It will upload the file based on the url that we uploaded
         documentRef.putFile(fileUrl!!)
             .addOnSuccessListener {
                 Log.d("Image URL", fileUrl .toString())
 
-                val Comment = comment!!.text.toString().trim()
+                val Comment = tvComment!!.text.toString().trim()
 
                 // Current Date Time format
                 val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
@@ -101,31 +111,34 @@ class ThesisSubmissionActivity : AppCompatActivity() {
 
                 val userId = FirebaseAuth.getInstance().currentUser!!.uid
 
-                // Get to same submitted submission id of "submission" collection
-                val newDocument = db.collection("submission").document(submissionId.toString())
-
+                // Query to get user data from "users" collection
                 db.collection("users").document(userId).get()
                     .addOnSuccessListener { usersSnapshot ->
                         val lastName = usersSnapshot.getString("last_name")
                         val firstName = usersSnapshot.getString("first_name")
                         val studentId = usersSnapshot.getString("std_id")
 
+                        // Query to "submission" collection with specific document id
+                        newDocument = db.collection("submission").document(submissionId.toString())
+
+                        // Prepare the data to store
                         val data = mapOf(
                             "last_name" to lastName,
                             "first_name" to firstName,
                             "std_id" to studentId,
                             "label" to Label,
                             "deadline" to Deadline,
-                            "submission_id" to newDocument.id,
+                            "submission_id" to newDocument!!.id,
                             "abstract" to Comment,
                             "submission_date" to dateSubmit,
                             "submission_status" to "Pending",
                             "overdue" to Overdue,
                             "user_id" to userId,
-                            "file_Submited" to fileName!!.text
+                            "file_Submited" to tvFileName!!.text
                         )
 
-                        newDocument.collection("users").document(userId).set(data)
+                        // Query to save the data into "users" sub-collection of "submission" collection
+                        newDocument!!.collection("users").document(userId).set(data)
                             .addOnSuccessListener { documentReference ->
                                 // The data was successfully saved
                                 Toast.makeText(
@@ -143,7 +156,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                     }
 
                 val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
-                intent.putExtra("submissionId", newDocument.id)
+                intent.putExtra("submissionId", newDocument!!.id)
                 // Remove current activity history to prevent navigate back
                 //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
                 startActivity(intent)
@@ -154,7 +167,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
     }
 
     private fun selectImage(){
-        var intent = Intent();
+        val intent = Intent();
 
         // if you want find image => "image/* , word or pdf => "application/*
         intent.setType("application/*");
@@ -168,7 +181,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
             when (requestCode) {
                 MY_CODE_REQUEST -> {
                     fileUrl = intent!!.data
-                    fileName!!.text = getFileNameFromUri(this, fileUrl!!)
+                    tvFileName!!.text = getFileNameFromUri(this, fileUrl!!)
                 }
             }
         }

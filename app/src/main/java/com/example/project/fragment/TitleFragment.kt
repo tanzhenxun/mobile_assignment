@@ -1,19 +1,13 @@
 package com.example.project.fragment
 
-import android.content.Context
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.project.TitleAdapter
+import com.example.project.adapter.TitleAdapter
 import com.example.project.R
 import com.example.project.Submission
 import com.google.firebase.auth.FirebaseAuth

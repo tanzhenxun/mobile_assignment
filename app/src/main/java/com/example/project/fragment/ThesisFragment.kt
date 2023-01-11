@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.R
 import com.example.project.Submission
-import com.example.project.ThesisAdapter
-import com.example.project.TitleAdapter
+import com.example.project.adapter.ThesisAdapter
+import com.example.project.adapter.TitleAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
