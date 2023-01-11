@@ -85,7 +85,7 @@ class ThesisFragment : Fragment()  {
                                     if (submission != null) {
                                         submissionList.add(submission)
                                     }
-                                    recyclerView.adapter = TitleAdapter(submissionList)
+                                    recyclerView.adapter = ThesisAdapter(submissionList)
                                 } else {
 
                                     submissionReference2.document(currentDocumentId).get()
@@ -135,7 +135,7 @@ class ThesisFragment : Fragment()  {
                                     if (submission != null) {
                                         submissionList.add(submission)
                                     }
-                                    recyclerView.adapter = TitleAdapter(submissionList)
+                                    recyclerView.adapter = ThesisAdapter(submissionList)
                                 } else {
 
                                     submissionReference2.document(currentDocumentId).get()

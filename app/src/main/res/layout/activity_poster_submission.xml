@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThesisSubmissionActivity">
+    tools:context=".ProsterSubmissionActivity">
 
 <TextView
         android:id="@+id/dashboard_title"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="16dp"
-        android:text="Thesis Submission"
+        android:text="Proster Submission"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -32,12 +32,12 @@
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/upload_thesis"
+        android:id="@+id/upload_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="30dp"
-        android:text="Thesis"
+        android:text="Poster"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload_thesis"/>
+        app:layout_constraintTop_toBottomOf="@+id/upload_proposal"/>
 
     <EditText
         android:id="@+id/input_comment"

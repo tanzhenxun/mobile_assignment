@@ -13,13 +13,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ThesisSubmissionActivity : AppCompatActivity() {
+class PosterSubmissionActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_thesis_submission)
+        setContentView(R.layout.activity_poster_submission)
         val submissionId = intent.getStringExtra("submissionId")
         val Label = intent.getStringExtra("label")
         val Deadline = intent.getStringExtra("deadline")
@@ -27,11 +27,11 @@ class ThesisSubmissionActivity : AppCompatActivity() {
 
         Toast.makeText(this, submissionId, Toast.LENGTH_LONG).show()
 
-        val upload_thesis = findViewById<TextView>(R.id.upload_thesis)
+        val upload_poster = findViewById<TextView>(R.id.upload_poster)
         val comment = findViewById<EditText>(R.id.input_comment)
         val btn_submit = findViewById<Button>(R.id.submit_button)
 
-        upload_thesis.text = Label
+        upload_poster.text = Label
         btn_submit.setOnClickListener {
             val Comment = comment.text.toString().trim()
 
@@ -86,7 +86,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                         }
                 }
 
-            val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
+            val intent = Intent(this, PosterSubmissionDetailActivity::class.java)
             intent.putExtra("submissionId", newDocument.id)
             // Remove current activity history to prevent navigate back
             //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
