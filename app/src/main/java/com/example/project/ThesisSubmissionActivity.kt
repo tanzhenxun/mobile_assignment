@@ -81,7 +81,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
         var fileRef : StorageReference? = storageReference.reference
 
         // it will get the file name only, if got fileUrl.lastPathSegment
-        var documentRef = fileRef!!.child("uploadedFile/${fileUrl!!.lastPathSegment}")
+        var documentRef = fileRef!!.child("uploadedFile/${fileName!!.text}")
 
         // It will upload the file based on the url that we uploaded
         documentRef.putFile(fileUrl!!)

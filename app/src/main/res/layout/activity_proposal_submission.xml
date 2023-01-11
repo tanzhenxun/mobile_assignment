@@ -84,7 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment"/>
+        app:layout_constraintTop_toBottomOf="@+id/comment"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/upload_button"
@@ -101,7 +102,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_comment" />
-
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:text="File Name"
+        app:layout_constraintStart_toEndOf="@+id/upload_button"
+        app:layout_constraintTop_toBottomOf="@+id/input_comment" />
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
