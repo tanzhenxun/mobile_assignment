@@ -29,29 +29,27 @@ import java.util.*
 class ThesisSubmissionActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private var storageReference = FirebaseStorage.getInstance()
-    private var fileUrl : Uri? = null
+    private var fileUrl: Uri? = null
 
     // Variable for data from previous activity
-    private var Deadline : String? = null
-    private var Label : String? = null
-    private var submissionId : String? = null
-    private var Overdue : Boolean? = null
+    private var Deadline: String? = null
+    private var Label: String? = null
+    private var submissionId: String? = null
+    private var Overdue: Boolean? = null
 
     // Variable for view or button
-    private var tvLabel : TextView? = null
-    private var tvComment : EditText? = null
-    private var tvFileName : TextView? = null
-    private var btnUpload : Button? = null
-    private var btnSubmit : Button? = null
-
-    // Declare variable for the document id of "submission" collection
-    private var newDocument: DocumentReference? = null
+    private var tvLabel: TextView? = null
+    private var tvComment: EditText? = null
+    private var tvFileName: TextView? = null
+    private var btnUpload: Button? = null
+    private var btnSubmit: Button? = null
 
     private var MY_CODE_REQUEST: Int = 100;
 
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        onActivityResult(MY_CODE_REQUEST, result)
-    }
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            onActivityResult(MY_CODE_REQUEST, result)
+        }
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,8 +84,8 @@ class ThesisSubmissionActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun uploadImage(){
-        val fileRef : StorageReference = storageReference.reference
+    private fun uploadImage() {
+        val fileRef: StorageReference = storageReference.reference
 
         // it will get the file name only, if got fileUrl.lastPathSegment
         // var documentRef = fileRef!!.child("uploadedFile/${fileUrl!!.lastPathSegment}")
@@ -96,7 +94,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
         // It will upload the file based on the url that we uploaded
         documentRef.putFile(fileUrl!!)
             .addOnSuccessListener {
-                Log.d("Image URL", fileUrl .toString())
+                Log.d("Image URL", fileUrl.toString())
 
                 val Comment = tvComment!!.text.toString().trim()
 
@@ -119,7 +117,8 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                         val studentId = usersSnapshot.getString("std_id")
 
                         // Query to "submission" collection with specific document id
-                        newDocument = db.collection("submission").document(submissionId.toString())
+                        val newDocument =
+                            db.collection("submission").document(submissionId.toString())
 
                         // Prepare the data to store
                         val data = mapOf(
@@ -128,7 +127,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                             "std_id" to studentId,
                             "label" to Label,
                             "deadline" to Deadline,
-                            "submission_id" to newDocument!!.id,
+                            "submission_id" to newDocument.id,
                             "abstract" to Comment,
                             "submission_date" to dateSubmit,
                             "submission_status" to "Pending",
@@ -138,7 +137,7 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                         )
 
                         // Query to save the data into "users" sub-collection of "submission" collection
-                        newDocument!!.collection("users").document(userId).set(data)
+                        newDocument.collection("users").document(userId).set(data)
                             .addOnSuccessListener { documentReference ->
                                 // The data was successfully saved
                                 Toast.makeText(
@@ -149,24 +148,24 @@ class ThesisSubmissionActivity : AppCompatActivity() {
                             .addOnFailureListener {
                                 // The save failed
                                 Toast.makeText(
-                                    baseContext, "Submission was not able to submit, please try again",
+                                    baseContext,
+                                    "Submission was not able to submit, please try again",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                        val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
+                        intent.putExtra("submissionId", newDocument.id)
+                        // Remove current activity history to prevent navigate back
+                        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(intent)
+
+                        // Back to the previous Activity.
+                        finish()
                     }
-
-                val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
-                intent.putExtra("submissionId", newDocument!!.id)
-                // Remove current activity history to prevent navigate back
-                //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-                startActivity(intent)
-
-                // Back to the previous Activity.
-                finish()
             }
     }
 
-    private fun selectImage(){
+    private fun selectImage() {
         val intent = Intent();
 
         // if you want find image => "image/* , word or pdf => "application/*

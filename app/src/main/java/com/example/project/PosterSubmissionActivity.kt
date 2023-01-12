@@ -41,9 +41,6 @@ class PosterSubmissionActivity : AppCompatActivity() {
     private var btnUpload : Button? = null
     private var btnSubmit : Button? = null
 
-    // Declare variable for the document id of "submission" collection
-    private var newDocument: DocumentReference? = null
-
     private var MY_CODE_REQUEST: Int = 100;
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -116,7 +113,7 @@ class PosterSubmissionActivity : AppCompatActivity() {
                         val studentId = usersSnapshot.getString("std_id")
 
                         // Query to "submission" collection with specific document id
-                        newDocument = db.collection("submission").document(submissionId.toString())
+                        val newDocument = db.collection("submission").document(submissionId.toString())
 
                         // Prepare the data to store
                         val data = mapOf(
@@ -125,7 +122,7 @@ class PosterSubmissionActivity : AppCompatActivity() {
                             "std_id" to studentId,
                             "label" to Label,
                             "deadline" to Deadline,
-                            "submission_id" to newDocument!!.id,
+                            "submission_id" to newDocument.id,
                             "abstract" to Comment,
                             "submission_date" to dateSubmit,
                             "submission_status" to "Pending",
@@ -135,7 +132,7 @@ class PosterSubmissionActivity : AppCompatActivity() {
                         )
 
                         // Query to save the data into "users" sub-collection of "submission" collection
-                        newDocument!!.collection("users").document(userId).set(data)
+                        newDocument.collection("users").document(userId).set(data)
                             .addOnSuccessListener { documentReference ->
                                 // The data was successfully saved
                                 Toast.makeText(
@@ -150,16 +147,16 @@ class PosterSubmissionActivity : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+
+                        val intent = Intent(this, ProposalSubmissionDetailActivity::class.java)
+                        intent.putExtra("submissionId", newDocument.id)
+                        // Remove current activity history to prevent navigate back
+                        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(intent)
+
+                        // Back to the previous Activity.
+                        finish()
                     }
-
-                val intent = Intent(this, ProposalSubmissionDetailActivity::class.java)
-                intent.putExtra("submissionId", newDocument!!.id)
-                // Remove current activity history to prevent navigate back
-                //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-                startActivity(intent)
-
-                // Back to the previous Activity.
-                finish()
             }
     }
 

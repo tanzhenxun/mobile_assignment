@@ -1,5 +1,4 @@
 package com.example.project
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -40,9 +39,6 @@ class ProposalSubmissionActivity : AppCompatActivity() {
     private var tvFileName : TextView? = null
     private var btnUpload : Button? = null
     private var btnSubmit : Button? = null
-
-    // Declare variable for the document id of "submission" collection
-    private var newDocument: DocumentReference? = null
 
     private var MY_CODE_REQUEST: Int = 100;
 
@@ -116,7 +112,7 @@ class ProposalSubmissionActivity : AppCompatActivity() {
                         val studentId = usersSnapshot.getString("std_id")
 
                         // Query to "submission" collection with specific document id
-                        newDocument = db.collection("submission").document(submissionId.toString())
+                        val newDocument = db.collection("submission").document(submissionId.toString())
 
                         // Prepare the data to store
                         val data = mapOf(
@@ -135,7 +131,7 @@ class ProposalSubmissionActivity : AppCompatActivity() {
                         )
 
                         // Query to save the data into "users" sub-collection of "submission" collection
-                        newDocument!!.collection("users").document(userId).set(data)
+                        newDocument.collection("users").document(userId).set(data)
                             .addOnSuccessListener { documentReference ->
                                 // The data was successfully saved
                                 Toast.makeText(
@@ -150,16 +146,16 @@ class ProposalSubmissionActivity : AppCompatActivity() {
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+
+                        val intent = Intent(this, ProposalSubmissionDetailActivity::class.java)
+                        intent.putExtra("submissionId", newDocument.id)
+                        // Remove current activity history to prevent navigate back
+                        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                        startActivity(intent)
+
+                        // Back to the previous Activity.
+                        finish()
                     }
-
-                val intent = Intent(this, ProposalSubmissionDetailActivity::class.java)
-                intent.putExtra("submissionId", newDocument!!.id)
-                // Remove current activity history to prevent navigate back
-                //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-                startActivity(intent)
-
-                // Back to the previous Activity.
-                finish()
             }
     }
 

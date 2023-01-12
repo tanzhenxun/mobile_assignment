@@ -32,9 +32,6 @@ class TitleSubmissionActivity : AppCompatActivity() {
     private var comment: TextView? = null
     private var btn_submit: Button? = null
 
-    // Declare variable for the document id of "submission" collection
-    private var newDocument: DocumentReference? = null
-
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,9 +68,7 @@ class TitleSubmissionActivity : AppCompatActivity() {
         // When press submit button
         btn_submit!!.setOnClickListener {
             saveData()
-            intentActivity()
         }
-
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -98,7 +93,7 @@ class TitleSubmissionActivity : AppCompatActivity() {
                 val studentId = usersSnapshot.getString("std_id")
 
                 // Get to same document id of "submission" collection
-                newDocument = db.collection("submission").document(submissionId.toString())
+                val newDocument = db.collection("submission").document(submissionId.toString())
 
                 val data = mapOf(
                     "last_name" to lastName,
@@ -106,7 +101,7 @@ class TitleSubmissionActivity : AppCompatActivity() {
                     "std_id" to studentId,
                     "label" to Label,
                     "deadline" to Deadline,
-                    "submission_id" to newDocument!!.id,
+                    "submission_id" to newDocument.id,
                     "title" to Title,
                     "abstract" to Comment,
                     "submission_date" to dateSubmit,
@@ -116,7 +111,7 @@ class TitleSubmissionActivity : AppCompatActivity() {
                 )
 
                 // Query to save the data into "users" sub-collection of "submission" collection
-                newDocument!!.collection("users").document(userId).set(data)
+                newDocument.collection("users").document(userId).set(data)
                     .addOnSuccessListener { documentReference ->
                         // The data was successfully saved
                         Toast.makeText(
@@ -132,22 +127,20 @@ class TitleSubmissionActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+
+                // Intent activity based on submission status
+                if (submissionStatus == "Pending") {
+                    finish()
+                } else {
+                    val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
+                    intent.putExtra("submissionId", newDocument.id)
+                    // Remove current activity history to prevent navigate back
+                    //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
+                    startActivity(intent)
+
+                    // Back to the previous Activity.
+                    finish()
+                }
             }
-    }
-
-    // Intent activity based on submission status
-    private fun intentActivity() {
-        if (submissionStatus == "Pending") {
-            finish()
-        } else {
-            val intent = Intent(this, TitleSubmissionDetailActivity::class.java)
-            intent.putExtra("submissionId", newDocument!!.id)
-            // Remove current activity history to prevent navigate back
-            //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
-
-            // Back to the previous Activity.
-            finish()
-        }
     }
 }
