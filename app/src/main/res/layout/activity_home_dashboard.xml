@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".fragment.StdDashboardFragment">
+    tools:context=".student.fragment.StdDashboardFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
 
     <TextView
         android:id="@+id/latest_update_word"
@@ -26,6 +30,7 @@
         android:id="@+id/textbox"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:background="@color/grey"
         android:padding="15dp"
@@ -37,7 +42,7 @@
             android:id="@+id/notice_msg1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tan Zhen Xun has been Submitted"
+            android:text="Lee Weng Hin has added a new submittion by:"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/notice_msg2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +54,7 @@
             android:id="@+id/notice_msg2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tan Zhen Xun has been Submitted"
+            android:text="14-01-2023 06:16:37"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/notice_msg3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +66,7 @@
             android:id="@+id/notice_msg3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tan Zhen Xun has been Submitted"
+            android:text="Lee Weng Hin has added a new submittion by:"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/notice_msg4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,23 +78,22 @@
             android:id="@+id/notice_msg4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tan Zhen Xun has been Submitted"
+            android:text="14-01-2023 06:16:49"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notice_msg3" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="25dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textbox">
@@ -112,89 +116,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/work_result" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:id="@+id/cardOngingWork"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="20dp"-->
-    <!--        android:layout_marginTop="25dp"-->
-    <!--        android:width="4dip"-->
-    <!--        app:cardBackgroundColor="@color/yellow"-->
-    <!--        app:cardCornerRadius="20dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/work_nvg">-->
-
-    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:width="4dip"-->
-    <!--            android:padding="10dp">-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/ongoing_icon"-->
-    <!--                android:layout_width="55dp"-->
-    <!--                android:layout_height="70dp"-->
-    <!--                android:layout_marginStart="4dp"-->
-    <!--                android:layout_marginTop="4dp"-->
-
-    <!--                android:background="@color/yellow"-->
-    <!--                app:layout_constraintStart_toStartOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                app:srcCompat="@drawable/proposal_report_icon"-->
-    <!--                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />-->
-
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/ongoing_icon_title"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginStart="20dp"-->
-    <!--                android:layout_marginTop="16dp"-->
-    <!--                android:text="Proposal Report"-->
-    <!--                android:textColor="@color/black"-->
-    <!--                android:textSize="18sp"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintStart_toEndOf="@+id/ongoing_icon"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                tools:ignore="MissingConstraints" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/ongoing_date"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginStart="20dp"-->
-    <!--                android:layout_marginTop="8dp"-->
-    <!--                android:width="200dip"-->
-    <!--                android:ellipsize="end"-->
-    <!--                android:singleLine="true"-->
-    <!--                android:text="Submission Date 2022/12/14 12:23AM"-->
-    <!--                android:textColor="@color/black"-->
-    <!--                app:layout_constraintStart_toEndOf="@+id/ongoing_icon"-->
-    <!--                app:layout_constraintTop_toBottomOf="@+id/ongoing_icon_title"-->
-    <!--                tools:ignore="MissingConstraints" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/ongoing_status"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_marginTop="4dp"-->
-    <!--                android:background="@drawable/round_deep_yellow_pending"-->
-    <!--                android:paddingHorizontal="15dp"-->
-    <!--                android:paddingVertical="2dp"-->
-    <!--                android:text="Pending"-->
-    <!--                android:textColor="@color/white"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                app:layout_constraintHorizontal_bias="0.985"-->
-    <!--                app:layout_constraintStart_toStartOf="parent"-->
-    <!--                app:layout_constraintTop_toTopOf="parent"-->
-    <!--                tools:ignore="MissingConstraints" />-->
-
-
-    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-    <!--    </androidx.cardview.widget.CardView>-->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
