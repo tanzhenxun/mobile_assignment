@@ -4,58 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.ThesisSubmissionDetailActivity">
+    tools:context=".supervisor.SubmissionApprovalDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl1"
+        android:id="@+id/topConstraint"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingHorizontal="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_border"
+        android:paddingVertical="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/dashboard_topic"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstrainLayoutUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Thesis"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/scorebar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/scorebar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_markbar"
-            android:gravity="center"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="1dp"
-            android:text="60"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintVertical_bias="0.5">
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/cl1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+            <ImageView
+                android:id="@+id/icon_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ConstrainLayoutName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstrainLayoutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="Tan Zhen Xun"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/student_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/student_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:text="2220441-BSE"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/user_name"
+                    tools:layout_editor_absoluteY="50dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/project_title"
@@ -71,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line" />
+        app:layout_constraintTop_toBottomOf="@+id/topConstraint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dateConstraintLayout"
@@ -79,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:layout_marginVertical="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_feedback"
+        app:layout_constraintBottom_toTopOf="@+id/tv_abstract"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,16 +143,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tv_feedback"
+        android:id="@+id/tv_abstract"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="20dp"
-        android:text="Feedback"
+        android:text="Abstract"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/input_feedback"
+        app:layout_constraintBottom_toTopOf="@+id/input_abstract"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +160,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/input_feedback"
+        android:id="@+id/input_abstract"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginHorizontal="25dp"
@@ -152,10 +180,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_feedback"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_abstract" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -163,8 +191,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_feedback">
-
+        app:layout_constraintTop_toBottomOf="@+id/input_abstract">
 
         <TextView
             android:id="@+id/status"
@@ -182,11 +209,11 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <Button
-            android:id="@+id/btn_undo"
+            android:id="@+id/btn_download"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/grey"
-            android:text="Undo"
+            android:text="Download File"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -196,6 +223,5 @@
             app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

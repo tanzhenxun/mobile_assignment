@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/endorsement"
+        android:title="Endorsement"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/submission"
+        android:title="Submission"
+        android:icon="@drawable/grade"/>
+</menu>

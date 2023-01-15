@@ -84,7 +84,6 @@
         android:layout_height="50dp"
         android:layout_marginHorizontal="50dp"
         android:background="@drawable/rounded_edittext_background"
-        app:backgroundTint="@color/grey"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="Login"/>
 </LinearLayout>
